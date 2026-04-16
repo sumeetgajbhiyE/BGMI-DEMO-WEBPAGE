@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeaderBoard</title>
+    <style>
+       body {
+  background: #0b0b0b;
+  color: white;
+  font-family: Arial;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #111;
+  padding: 15px 40px;
+}
+
+/* Logo */
+.navbar h2 {
+  color: white;
+  font-weight: bold;
+}
+
+/* Menu */
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+/* Menu items */
+.navbar ul li {
+  color: #aaa;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+/* Hover effect */
+.navbar ul li:hover {
+  color: white;
+}
+
+/* Active tab */
+.navbar .active {
+  color: gold;
+  border-bottom: 2px solid gold;
+  padding-bottom: 5px;
+}
+
+.container {
+  padding: 20px;
+}
+.tabs button {
+  background: none;
+  border: none;
+  color: gray;
+  margin-right: 20px;
+  font-size: 16px;
+}
+
+.tabs .active {
+  color: gold;
+  border-bottom: 2px solid gold;
+}
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+.card {
+  background: #111;
+  border: 1px solid #333;
+  padding: 15px;
+  border-radius: 12px;
+  position: relative;
+  transition: 0.3s;
+  justify-content: space-between;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  border-color: gold;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+}
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
+.rank {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: gold;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+.card {
+  background: linear-gradient(to bottom, #1a1a1a, #0b0b0b);
+}
+.card:nth-child(1) { border: 2px solid gold; }
+.card:nth-child(2) { border: 2px solid rgb(224, 156, 11); }
+.card:nth-child(3) { border: 2px solid orange; }
+.card:nth-child(4) { border: 2px solid #cd7f32; }
+.card:nth-child(5) { border: 2px solid #c0c0c0; }
+.card:nth-child(6) { border: 2px solid #d3d3d3; }
+.card:nth-child(7) { border: 2px solid #a9a9a9; }
+.card:nth-child(8) { border: 2px solid #808080; }
+.card:nth-child(9) { border: 2px solid #666666; }
+.card:nth-child(10) { border: 2px solid #4d4d4d; }
+
+.card p {
+  display: flex;
+  justify-content: space-between;
+}
+.all-players {
+  margin-top: 50px;
+}
+
+.all-players h2 {
+  color: gold;
+  margin-bottom: 20px;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #111;
+}
+
+/* Header */
+th {
+  text-align: left;
+  padding: 15px;
+  color: gold;
+  font-size: 14px;
+}
+
+/* Rows */
+td {
+  padding: 18px 15px;
+  color: #ccc;
+}
+
+/* Alternate row background */
+tbody tr:nth-child(even) {
+  background: #1a1a1a;
+}
+
+/* Hover effect */
+tbody tr:hover {
+  background: #222;
+}
+
+/* Top 3 highlight lines */
+.rank1 {
+  border-bottom: 2px solid gold;
+}
+
+.rank2 {
+  border-bottom: 2px solid silver;
+}
+
+.rank3 {
+  border-bottom: 2px solid orange;
+}
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">BGMI</div>
+      
+        <ul>
+          <li>Tournaments</li>
+          <li>Videos</li>
+          <li class="active">Rankings</li>
+        </ul>
+      </nav>
+  
+    <section class="container">
+      <h1>RANKINGS</h1>
+  
+      <div class="tabs">
+        <button class="active">Players</button>
+        <!-- <button>Teams</button> -->
+      </div>
+  
+      <h2>Top 10 Players</h2>
+  
+      <div class="card-grid">
+        <!-- Card -->
+        <div class="card">
+          <div class="rank">1</div>
+          <img src="./assets/nuclear.jpg" />
+          <h3>JodxNuclear</h3>
+          <p>Year: 2026</p>
+          <p>Points: 100</p>
+        </div>
+        <div class="card">
+            <div class="rank">2</div>
+            <img src="./assets/nuclear.jpg" />
+            <h3>JodxNuclear</h3>
+            <p>Year: 2026</p>
+            <p>Points: 120</p>
+          </div>
+          <div class="card">
+            <div class="rank">3</div>
+            <img src="./assets/nuclear.jpg" />
+            <h3>JodxNuclear</h3>
+            <p>Year: 2026</p>
+            <p>Points: 130</p>
+          </div>
+          <div class="card">
+            <div class="rank">4</div>
+            <img src="./assets/nuclear.jpg" />
+            <h3>JodxNuclear</h3>
+            <p>Year: 2026</p>
+            <p>Points: 140</p>
+          </div>
+          <div class="card">
+            <div class="rank">5</div>
+            <img src="./assets/nuclear.jpg" />
+            <h3>JodxNuclear</h3>
+            <p>Year: 2026</p>
+            <p>Points: 160</p>
+          </div>
+      </div>
+    </section>
+    <section class="all-players">
+        <h2>ALL PLAYERS</h2>
+      
+        <table>
+          <thead>
+            <tr>
+              <th>RANK</th>
+              <th>PLAYER NAME</th>
+              <th>TEAM NAME</th>
+              <th>GLOBAL POINTS</th>
+              <th>FINISHES</th>
+            </tr>
+          </thead>
+      
+          <tbody>
+            <tr class="rank1">
+              <td>1</td>
+              <td>JodxNuclear</td>
+              <td>FS eSports</td>
+              <td>100</td>
+              <td>76</td>
+            </tr>
+      
+            <tr class="rank2">
+              <td>2</td>
+              <td>JodxNuclear</td>
+              <td>Team AX</td>
+              <td>120</td>
+              <td>76</td>
+            </tr>
+      
+            <tr class="rank3">
+              <td>3</td>
+              <td>JodxNuclear</td>
+              <td>Hero Xtreme Godlike</td>
+              <td>130</td>
+              <td>88</td>
+            </tr>
+      
+            <tr>
+              <td>4</td>
+              <td>JodxNuclear</td>
+              <td>K9 Esports</td>
+              <td>140</td>
+              <td>86</td>
+            </tr>
+      
+            <!-- Add more rows same way -->
+          </tbody>
+        </table>
+      </section>
+  </body>
