@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous">
     <style>
         :root {
             --text-color: #ffffff;
@@ -17,22 +19,25 @@
             --accent-color: #00ff66;
             --accent-glow: 0 0 15px rgba(0, 255, 102, 0.5);
             --border-color: rgba(255, 255, 255, 0.15);
+            --danger-color: #ff4444;
         }
+
         * {
             box-sizing: border-box;
             font-family: 'Outfit', sans-serif;
         }
+
         body {
             margin: 0;
             padding: 0;
-            height: 100vh;
+            min-height: 100vh;
             color: var(--text-color);
             background-color: var(--bg-color);
-            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
         }
+
         .video-bg {
             position: fixed;
             top: 0;
@@ -43,6 +48,7 @@
             z-index: -2;
             transform: scale(1.05);
         }
+
         .video-overlay {
             position: fixed;
             top: 0;
@@ -53,6 +59,7 @@
             z-index: -1;
             backdrop-filter: blur(8px);
         }
+
         .glass-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -62,19 +69,21 @@
             padding: 50px 40px;
             width: 90%;
             max-width: 450px;
-            box-shadow: 0 25px 45px rgba(0,0,0,0.4);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.4);
             position: relative;
             z-index: 1;
             animation: floatUp 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
             opacity: 0;
             transform: translateY(30px);
         }
+
         @keyframes floatUp {
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
+
         /* Decorative glowing orb */
         .glass-card::before {
             content: '';
@@ -90,6 +99,7 @@
             z-index: -1;
             pointer-events: none;
         }
+
         h1 {
             font-size: 2.5rem;
             font-weight: 800;
@@ -101,18 +111,21 @@
             text-transform: uppercase;
             letter-spacing: 2px;
         }
+
         .subtitle {
             text-align: center;
             color: var(--text-muted);
             margin-bottom: 30px;
             font-weight: 300;
         }
+
         .form-label {
             font-weight: 600;
             color: var(--text-color);
             margin-bottom: 8px;
             letter-spacing: 0.5px;
         }
+
         .form-control {
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid var(--border-color);
@@ -122,6 +135,7 @@
             font-size: 1rem;
             transition: all 0.3s ease;
         }
+
         .form-control:focus {
             background: rgba(255, 255, 255, 0.15);
             border-color: var(--accent-color);
@@ -129,21 +143,26 @@
             color: var(--text-color);
             outline: none;
         }
+
         .form-control::placeholder {
             color: rgba(255, 255, 255, 0.4);
         }
+
         .form-check-input {
             background-color: rgba(255, 255, 255, 0.1);
             border-color: var(--border-color);
         }
+
         .form-check-input:checked {
             background-color: var(--accent-color);
             border-color: var(--accent-color);
             box-shadow: var(--accent-glow);
         }
+
         .form-check-label {
             color: var(--text-muted);
         }
+
         .btn-custom {
             width: 100%;
             padding: 12px;
@@ -155,23 +174,39 @@
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             margin-top: 10px;
         }
+
         .btn-submit {
             background: linear-gradient(135deg, var(--accent-color), #00b347);
             color: #000;
             border: none;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
+
         .btn-submit:hover {
             transform: translateY(-3px);
             box-shadow: var(--accent-glow);
             color: #111;
         }
+
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
         .btn-register {
             background: transparent;
             color: var(--text-color);
             border: 1px solid var(--border-color);
             margin-top: 15px;
         }
+
+        .btn-register:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--text-color);
+        }
+
+        .back-link {
         .btn-register:hover {
             background: rgba(255, 255, 255, 0.1);
             border-color: var(--text-color);
@@ -214,16 +249,126 @@
             transition: all 0.3s ease;
             z-index: 10;
         }
-        
+
         .back-link:hover {
             color: var(--accent-color);
             transform: translateX(-5px);
         }
+
+        /* ─── TOGGLE SWITCH ─── */
+        .mode-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            margin-bottom: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .mode-toggle button {
+            flex: 1;
+            padding: 10px 20px;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mode-toggle button.active {
+            background: var(--accent-color);
+            color: #000;
+            box-shadow: var(--accent-glow);
+        }
+
+        /* ─── TOAST ─── */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .toast {
+            background: rgba(20, 20, 20, 0.95);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(20px);
+            border-radius: 12px;
+            padding: 16px 24px;
+            min-width: 300px;
+            max-width: 420px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: slideInRight 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .toast.success {
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .toast.error {
+            border-left: 4px solid var(--danger-color);
+        }
+
+        .toast-icon {
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .toast-msg {
+            flex: 1;
+            font-size: 0.95rem;
+            color: var(--text-color);
+        }
+
+        /* ─── LOADING SPINNER ─── */
+        .spinner {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(0, 0, 0, 0.2);
+            border-top-color: #000;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
         @media (max-width: 576px) {
             .glass-card {
                 padding: 40px 25px;
                 width: 95%;
             }
+
             .back-link {
                 top: 20px;
                 left: 20px;
@@ -231,19 +376,231 @@
         }
     </style>
 </head>
+
 <body>
     <video class="video-bg" autoplay muted loop playsinline>
-        <source src="https://www.shutterstock.com/shutterstock/videos/1044897340/preview/stock-footage-moscow-russia-december-girl-holding-a-smart-phone-iphone-pro-playing-online-mobile.mp4" type="video/mp4">
+        <source
+            src="https://www.shutterstock.com/shutterstock/videos/1044897340/preview/stock-footage-moscow-russia-december-girl-holding-a-smart-phone-iphone-pro-playing-online-mobile.mp4"
+            type="video/mp4">
     </video>
     <div class="video-overlay"></div>
+
     <a href="index.html" class="back-link">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
             <line x1="19" y1="12" x2="5" y2="12"></line>
             <polyline points="12 19 5 12 12 5"></polyline>
         </svg>
         Back to Home
     </a>
+
     <div class="glass-card">
+        <!-- MODE TOGGLE -->
+        <div class="mode-toggle">
+            <button id="btnLoginMode" class="active" onclick="switchMode('login')">Login</button>
+            <button id="btnRegisterMode" onclick="switchMode('register')">Register</button>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <div id="loginForm">
+            <h1>Login</h1>
+            <p class="subtitle">Access your BGMI Account</p>
+
+            <form id="loginFormEl" onsubmit="handleLogin(event)">
+                <div class="mb-4">
+                    <label for="loginEmail" class="form-label">Email Address</label>
+                    <input type="email" class="form-control" id="loginEmail" placeholder="Enter your email" required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="loginPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password"
+                        required>
+                </div>
+
+                <div class="mb-4 form-check">
+                    <input type="checkbox" class="form-check-input" id="rememberMe">
+                    <label class="form-check-label" for="rememberMe">Remember me</label>
+                </div>
+
+                <button type="submit" class="btn-custom btn-submit" id="loginBtn">Login</button>
+            </form>
+        </div>
+
+        <!-- REGISTER FORM -->
+        <div id="registerForm" style="display: none;">
+            <h1>Register</h1>
+            <p class="subtitle">Create a new BGMI Account</p>
+
+            <form id="registerFormEl" onsubmit="handleRegister(event)">
+                <div class="mb-4">
+                    <label for="regUsername" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="regUsername" placeholder="Choose a username" required
+                        minlength="3">
+                </div>
+
+                <div class="mb-4">
+                    <label for="regEmail" class="form-label">Email Address</label>
+                    <input type="email" class="form-control" id="regEmail" placeholder="Enter your email" required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="regPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="regPassword"
+                        placeholder="Create a password (min 6 chars)" required minlength="6">
+                </div>
+
+                <div class="mb-4">
+                    <label for="regConfirmPassword" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="regConfirmPassword"
+                        placeholder="Re-enter your password" required minlength="6">
+                </div>
+
+                <button type="submit" class="btn-custom btn-submit" id="registerBtn">Create Account</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script>
+        const API_BASE = "http://localhost:5001/api";
+
+        // ─── MODE SWITCH ──────────────────────────────────────────────────────────
+        function switchMode(mode) {
+            const loginForm = document.getElementById("loginForm");
+            const registerForm = document.getElementById("registerForm");
+            const btnLogin = document.getElementById("btnLoginMode");
+            const btnRegister = document.getElementById("btnRegisterMode");
+
+            if (mode === "login") {
+                loginForm.style.display = "block";
+                registerForm.style.display = "none";
+                btnLogin.classList.add("active");
+                btnRegister.classList.remove("active");
+            } else {
+                loginForm.style.display = "none";
+                registerForm.style.display = "block";
+                btnLogin.classList.remove("active");
+                btnRegister.classList.add("active");
+            }
+        }
+
+        // ─── LOGIN HANDLER ────────────────────────────────────────────────────────
+        async function handleLogin(e) {
+            e.preventDefault();
+            const btn = document.getElementById("loginBtn");
+            const email = document.getElementById("loginEmail").value.trim();
+            const password = document.getElementById("loginPassword").value;
+
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner"></span> Logging in...';
+
+            try {
+                const response = await fetch(`${API_BASE}/login`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Save user data to localStorage
+                    localStorage.setItem("bgmi_user", JSON.stringify(data.user));
+                    showToast("success", `✅ Welcome back, ${data.user.username}!`);
+
+                    // Redirect after short delay
+                    setTimeout(() => {
+                        window.location.href = "index.html";
+                    }, 1200);
+                } else {
+                    showToast("error", `❌ ${data.error || "Login failed"}`);
+                    btn.disabled = false;
+                    btn.textContent = "Login";
+                }
+            } catch (err) {
+                showToast("error", "❌ Server error. Make sure the backend is running on port 5001.");
+                console.error(err);
+                btn.disabled = false;
+                btn.textContent = "Login";
+            }
+        }
+
+        // ─── REGISTER HANDLER ─────────────────────────────────────────────────────
+        async function handleRegister(e) {
+            e.preventDefault();
+            const btn = document.getElementById("registerBtn");
+            const username = document.getElementById("regUsername").value.trim();
+            const email = document.getElementById("regEmail").value.trim();
+            const password = document.getElementById("regPassword").value;
+            const confirmPassword = document.getElementById("regConfirmPassword").value;
+
+            // Validate passwords match
+            if (password !== confirmPassword) {
+                showToast("error", "❌ Passwords do not match!");
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner"></span> Creating account...';
+
+            try {
+                const response = await fetch(`${API_BASE}/register`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ username, email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showToast("success", `✅ Account created! Welcome, ${data.user.username}!`);
+
+                    // Save user and redirect
+                    localStorage.setItem("bgmi_user", JSON.stringify(data.user));
+                    setTimeout(() => {
+                        window.location.href = "index.html";
+                    }, 1200);
+                } else {
+                    showToast("error", `❌ ${data.error || "Registration failed"}`);
+                    btn.disabled = false;
+                    btn.textContent = "Create Account";
+                }
+            } catch (err) {
+                showToast("error", "❌ Server error. Make sure the backend is running on port 5001.");
+                console.error(err);
+                btn.disabled = false;
+                btn.textContent = "Create Account";
+            }
+        }
+
+        // ─── TOAST ────────────────────────────────────────────────────────────────
+        function showToast(type, message) {
+            const container = document.getElementById("toastContainer");
+            const icons = { success: "✅", error: "❌" };
+            const toast = document.createElement("div");
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `
+                <span class="toast-icon">${icons[type] || "ℹ️"}</span>
+                <span class="toast-msg">${message}</span>
+            `;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = "0";
+                toast.style.transform = "translateX(60px)";
+                toast.style.transition = "all 0.4s ease";
+                setTimeout(() => toast.remove(), 400);
+            }, 4000);
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
         <h1>Login</h1>
         <p class="subtitle">Access your BGMI Account</p>
         

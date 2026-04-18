@@ -1,292 +1,332 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LeaderBoard</title>
-    <style>
-       body {
-  background: #0b0b0b;
-  color: white;
-  font-family: Arial;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LeaderBoard</title>
+  <style>
+    body {
+      background: #0b0b0b;
+      color: white;
+      font-family: Arial;
+    }
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #111;
-  padding: 15px 40px;
-}
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #111;
+      padding: 15px 40px;
+    }
 
-/* Logo */
-.navbar h2 {
-  color: white;
-  font-weight: bold;
-}
+    /* Logo */
+    .navbar h2 {
+      color: white;
+      font-weight: bold;
+    }
 
-/* Menu */
-.navbar ul {
-  list-style: none;
-  display: flex;
-  gap: 30px;
-}
+    /* Menu */
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
 
-/* Menu items */
-.navbar ul li {
-  color: #aaa;
-  cursor: pointer;
-  font-size: 14px;
-  transition: 0.3s;
-}
+    /* Menu items */
+    .navbar ul li {
+      color: #aaa;
+      cursor: pointer;
+      font-size: 14px;
+      transition: 0.3s;
+    }
 
-/* Hover effect */
-.navbar ul li:hover {
-  color: white;
-}
+    /* Hover effect */
+    .navbar ul li:hover {
+      color: white;
+    }
 
-/* Active tab */
-.navbar .active {
-  color: gold;
-  border-bottom: 2px solid gold;
-  padding-bottom: 5px;
-}
+    /* Active tab */
+    .navbar .active {
+      color: gold;
+      border-bottom: 2px solid gold;
+      padding-bottom: 5px;
+    }
 
-.container {
-  padding: 20px;
-}
-.tabs button {
-  background: none;
-  border: none;
-  color: gray;
-  margin-right: 20px;
-  font-size: 16px;
-}
+    .container {
+      padding: 20px;
+    }
 
-.tabs .active {
-  color: gold;
-  border-bottom: 2px solid gold;
-}
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
-}
-.card {
-  background: #111;
-  border: 1px solid #333;
-  padding: 15px;
-  border-radius: 12px;
-  position: relative;
-  transition: 0.3s;
-  justify-content: space-between;
-}
+    .tabs button {
+      background: none;
+      border: none;
+      color: gray;
+      margin-right: 20px;
+      font-size: 16px;
+    }
 
-.card:hover {
-  transform: scale(1.05);
-  border-color: gold;
-}
+    .tabs .active {
+      color: gold;
+      border-bottom: 2px solid gold;
+    }
 
-.card img {
-  width: 100%;
-  border-radius: 10px;
-}
-.logo {
-  font-size: 20px;
-  font-weight: bold;
-  color: white;
-}
-.rank {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: gold;
-  color: black;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-weight: bold;
-}
-.card {
-  background: linear-gradient(to bottom, #1a1a1a, #0b0b0b);
-}
-.card:nth-child(1) { border: 2px solid gold; }
-.card:nth-child(2) { border: 2px solid rgb(224, 156, 11); }
-.card:nth-child(3) { border: 2px solid orange; }
-.card:nth-child(4) { border: 2px solid #cd7f32; }
-.card:nth-child(5) { border: 2px solid #c0c0c0; }
-.card:nth-child(6) { border: 2px solid #d3d3d3; }
-.card:nth-child(7) { border: 2px solid #a9a9a9; }
-.card:nth-child(8) { border: 2px solid #808080; }
-.card:nth-child(9) { border: 2px solid #666666; }
-.card:nth-child(10) { border: 2px solid #4d4d4d; }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+    }
 
-.card p {
-  display: flex;
-  justify-content: space-between;
-}
-.all-players {
-  margin-top: 50px;
-}
+    .card {
+      background: #111;
+      border: 1px solid #333;
+      padding: 15px;
+      border-radius: 12px;
+      position: relative;
+      transition: 0.3s;
+      justify-content: space-between;
+    }
 
-.all-players h2 {
-  color: gold;
-  margin-bottom: 20px;
-}
+    .card:hover {
+      transform: scale(1.05);
+      border-color: gold;
+    }
 
-/* Table styling */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #111;
-}
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+    }
 
-/* Header */
-th {
-  text-align: left;
-  padding: 15px;
-  color: gold;
-  font-size: 14px;
-}
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+      color: white;
+    }
 
-/* Rows */
-td {
-  padding: 18px 15px;
-  color: #ccc;
-}
+    .rank {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: gold;
+      color: black;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-weight: bold;
+    }
 
-/* Alternate row background */
-tbody tr:nth-child(even) {
-  background: #1a1a1a;
-}
+    .card {
+      background: linear-gradient(to bottom, #1a1a1a, #0b0b0b);
+    }
 
-/* Hover effect */
-tbody tr:hover {
-  background: #222;
-}
+    .card:nth-child(1) {
+      border: 2px solid gold;
+    }
 
-/* Top 3 highlight lines */
-.rank1 {
-  border-bottom: 2px solid gold;
-}
+    .card:nth-child(2) {
+      border: 2px solid rgb(224, 156, 11);
+    }
 
-.rank2 {
-  border-bottom: 2px solid silver;
-}
+    .card:nth-child(3) {
+      border: 2px solid orange;
+    }
 
-.rank3 {
-  border-bottom: 2px solid orange;
-}
-    </style>
+    .card:nth-child(4) {
+      border: 2px solid #cd7f32;
+    }
+
+    .card:nth-child(5) {
+      border: 2px solid #c0c0c0;
+    }
+
+    .card:nth-child(6) {
+      border: 2px solid #d3d3d3;
+    }
+
+    .card:nth-child(7) {
+      border: 2px solid #a9a9a9;
+    }
+
+    .card:nth-child(8) {
+      border: 2px solid #808080;
+    }
+
+    .card:nth-child(9) {
+      border: 2px solid #666666;
+    }
+
+    .card:nth-child(10) {
+      border: 2px solid #4d4d4d;
+    }
+
+    .card p {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .all-players {
+      margin-top: 50px;
+    }
+
+    .all-players h2 {
+      color: gold;
+      margin-bottom: 20px;
+    }
+
+    /* Table styling */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #111;
+    }
+
+    /* Header */
+    th {
+      text-align: left;
+      padding: 15px;
+      color: gold;
+      font-size: 14px;
+    }
+
+    /* Rows */
+    td {
+      padding: 18px 15px;
+      color: #ccc;
+    }
+
+    /* Alternate row background */
+    tbody tr:nth-child(even) {
+      background: #1a1a1a;
+    }
+
+    /* Hover effect */
+    tbody tr:hover {
+      background: #222;
+    }
+
+    /* Top 3 highlight lines */
+    .rank1 {
+      border-bottom: 2px solid gold;
+    }
+
+    .rank2 {
+      border-bottom: 2px solid silver;
+    }
+
+    .rank3 {
+      border-bottom: 2px solid orange;
+    }
+  </style>
 </head>
+
 <body>
-    <nav class="navbar">
-        <div class="logo">BGMI</div>
-      
-        <ul>
-          <li>Tournaments</li>
-          <li>Videos</li>
-          <li class="active">Rankings</li>
-        </ul>
-      </nav>
-  
-    <section class="container">
-      <h1>RANKINGS</h1>
-  
-      <div class="tabs">
-        <button class="active">Players</button>
-        <!-- <button>Teams</button> -->
+  <nav class="navbar">
+    <div class="logo">BGMI</div>
+
+    <ul>
+      <li>Tournaments</li>
+      <li>Videos</li>
+      <li class="active">Rankings</li>
+    </ul>
+  </nav>
+
+  <section class="container">
+    <h1>RANKINGS</h1>
+
+    <div class="tabs">
+      <button class="active">Players</button>
+      <!-- <button>Teams</button> -->
+    </div>
+
+    <h2>Top 10 Players</h2>
+
+    <div class="card-grid">
+      <!-- Card -->
+      <div class="card">
+        <div class="rank">1</div>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_g-U9-sXBmPbeyRfL4Fu3uQwiyfPGkzsjUQ&s" />
+        <h3>Hunterzzz</h3>
+        <p>Year: 2026</p>
+        <p>Points: 200</p>
       </div>
-  
-      <h2>Top 10 Players</h2>
-  
-      <div class="card-grid">
-        <!-- Card -->
-        <div class="card">
-          <div class="rank">1</div>
-          <img src="./assets/nuclear.jpg" />
-          <h3>JodxNuclear</h3>
-          <p>Year: 2026</p>
-          <p>Points: 100</p>
-        </div>
-        <div class="card">
-            <div class="rank">2</div>
-            <img src="./assets/nuclear.jpg" />
-            <h3>JodxNuclear</h3>
-            <p>Year: 2026</p>
-            <p>Points: 120</p>
-          </div>
-          <div class="card">
-            <div class="rank">3</div>
-            <img src="./assets/nuclear.jpg" />
-            <h3>JodxNuclear</h3>
-            <p>Year: 2026</p>
-            <p>Points: 130</p>
-          </div>
-          <div class="card">
-            <div class="rank">4</div>
-            <img src="./assets/nuclear.jpg" />
-            <h3>JodxNuclear</h3>
-            <p>Year: 2026</p>
-            <p>Points: 140</p>
-          </div>
-          <div class="card">
-            <div class="rank">5</div>
-            <img src="./assets/nuclear.jpg" />
-            <h3>JodxNuclear</h3>
-            <p>Year: 2026</p>
-            <p>Points: 160</p>
-          </div>
+      <div class="card">
+        <div class="rank">2</div>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAge7BD7x-p4hpeQCs1gNGap29m0escUA6ow&s" />
+        <h3>TrxHydroo</h3>
+        <p>Year: 2026</p>
+        <p>Points: 180</p>
       </div>
-    </section>
-    <section class="all-players">
-        <h2>ALL PLAYERS</h2>
-      
-        <table>
-          <thead>
-            <tr>
-              <th>RANK</th>
-              <th>PLAYER NAME</th>
-              <th>TEAM NAME</th>
-              <th>GLOBAL POINTS</th>
-              <th>FINISHES</th>
-            </tr>
-          </thead>
-      
-          <tbody>
-            <tr class="rank1">
-              <td>1</td>
-              <td>JodxNuclear</td>
-              <td>FS eSports</td>
-              <td>100</td>
-              <td>76</td>
-            </tr>
-      
-            <tr class="rank2">
-              <td>2</td>
-              <td>JodxNuclear</td>
-              <td>Team AX</td>
-              <td>120</td>
-              <td>76</td>
-            </tr>
-      
-            <tr class="rank3">
-              <td>3</td>
-              <td>JodxNuclear</td>
-              <td>Hero Xtreme Godlike</td>
-              <td>130</td>
-              <td>88</td>
-            </tr>
-      
-            <tr>
-              <td>4</td>
-              <td>JodxNuclear</td>
-              <td>K9 Esports</td>
-              <td>140</td>
-              <td>86</td>
-            </tr>
-      
-            <!-- Add more rows same way -->
-          </tbody>
-        </table>
-      </section>
-  </body>
+      <div class="card">
+        <div class="rank">3</div>
+        <img src="https://m.media-amazon.com/images/I/71nZMTugAEL._UF1000,1000_QL80_.jpg" />
+        <h3>Jonathan</h3>
+        <p>Year: 2026</p>
+        <p>Points: 170</p>
+      </div>
+      <div class="card">
+        <div class="rank">4</div>
+        <img
+          src="data:image/jpeg;base64,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" />
+        <h3>ADMINO</h3>
+        <p>Year: 2026</p>
+        <p>Points: 140</p>
+      </div>
+      <div class="card">
+        <div class="rank">5</div>
+        <img src="https://www.famekeeda.com/blogs/content/images/2025/03/tanjot.webp" />
+        <h3>Ninjaboii</h3>
+        <p>Year: 2026</p>
+        <p>Points: 160</p>
+      </div>
+    </div>
+  </section>
+  <section class="all-players">
+    <h2>ALL PLAYERS</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>RANK</th>
+          <th>PLAYER NAME</th>
+          <th>TEAM NAME</th>
+          <th>GLOBAL POINTS</th>
+          <th>FINISHES</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr class="rank1">
+          <td>1</td>
+          <td>Hunterzzz</td>
+          <td>FS eSports</td>
+          <td>200</td>
+          <td>76</td>
+        </tr>
+
+        <tr class="rank2">
+          <td>2</td>
+          <td>TRxHydroo</td>
+          <td>TrueRippers</td>
+          <td>180</td>
+          <td>76</td>
+        </tr>
+
+        <tr class="rank3">
+          <td>3</td>
+          <td>Jonathan</td>
+          <td>Hero Xtreme Godlike</td>
+          <td>130</td>
+          <td>88</td>
+        </tr>
+
+        <tr>
+          <td>4</td>
+          <td>Admino</td>
+          <td>Hero Xtreme Godlike</td>
+          <td>140</td>
+          <td>86</td>
+        </tr>
+
+        <!-- Add more rows same way -->
+      </tbody>
+    </table>
+  </section>
+</body>
