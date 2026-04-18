@@ -215,7 +215,17 @@
                 });
 
                 if (error) {
-                    showMessage(error.message, "error");
+                    const msg = (error.message || "").toLowerCase();
+                    if (msg.includes("rate limit") || msg.includes("exceeded")) {
+                        showMessage(
+                            "Too many signup attempts right now. Supabase's built-in email service is rate-limited. Please wait a few minutes and try again, or ask the site owner to disable email confirmation or configure custom SMTP.",
+                            "error"
+                        );
+                    } else if (msg.includes("already registered") || msg.includes("already exists") || msg.includes("user already")) {
+                        showMessage("An account with this email already exists. Please login instead.", "error");
+                    } else {
+                        showMessage(error.message, "error");
+                    }
                     return;
                 }
 
@@ -224,7 +234,7 @@
                     setTimeout(() => { window.location.href = "profile.html"; }, 800);
                 } else {
                     showMessage(
-                        "Account created. Please check your email to confirm your address, then login.",
+                        "Account created. Check your email for the confirmation link, then come back and login.",
                         "success"
                     );
                     form.reset();
