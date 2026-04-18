@@ -176,7 +176,31 @@
             background: rgba(255, 255, 255, 0.1);
             border-color: var(--text-color);
         }
-        
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .form-message {
+            margin-top: 16px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            display: none;
+        }
+        .form-message.error {
+            display: block;
+            background: rgba(255, 77, 77, 0.12);
+            border: 1px solid rgba(255, 77, 77, 0.4);
+            color: #ff4d4d;
+        }
+        .form-message.success {
+            display: block;
+            background: rgba(0, 255, 102, 0.12);
+            border: 1px solid rgba(0, 255, 102, 0.4);
+            color: var(--accent-color);
+        }
+
         .back-link {
             position: absolute;
             top: 30px;
@@ -223,7 +247,7 @@
         <h1>Login</h1>
         <p class="subtitle">Access your BGMI Account</p>
         
-        <form action="index.html">
+        <form id="loginForm" novalidate>
             <div class="mb-4">
                 <label for="exampleInputEmail1" class="form-label">Email Address</label>
                 <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter your email" required>
@@ -239,10 +263,107 @@
                 <label class="form-check-label" for="exampleCheck1">Remember me</label>
             </div>
             
-            <button type="submit" class="btn-custom btn-submit">Submit</button>
-            <button type="button" class="btn-custom btn-register">Register New Account</button>
+            <button type="submit" class="btn-custom btn-submit" id="loginBtn">Submit</button>
+            <a href="register.html" class="btn-custom btn-register d-block text-center text-decoration-none">Register New Account</a>
+
+            <div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
+            <button type="button" id="resendBtn" class="btn-custom btn-register" style="display:none; margin-top: 12px;">Resend Confirmation Email</button>
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script type="module">
+        import { supabase } from "./js/supabase-client.js";
+
+        const form = document.getElementById("loginForm");
+        const btn = document.getElementById("loginBtn");
+        const messageEl = document.getElementById("formMessage");
+        const resendBtn = document.getElementById("resendBtn");
+        const emailInput = document.getElementById("exampleInputEmail1");
+
+        function showMessage(text, type) {
+            messageEl.textContent = text;
+            messageEl.className = "form-message " + type;
+        }
+
+        // If already logged in, skip straight to profile.
+        (async () => {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (session) {
+                window.location.href = "profile.html";
+            }
+        })();
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            messageEl.className = "form-message";
+            messageEl.textContent = "";
+            resendBtn.style.display = "none";
+
+            const email = emailInput.value.trim();
+            const password = document.getElementById("exampleInputPassword1").value;
+
+            if (!email || !password) {
+                showMessage("Please enter your email and password.", "error");
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = "Signing in...";
+
+            try {
+                const { error } = await supabase.auth.signInWithPassword({ email, password });
+                if (error) {
+                    const msg = (error.message || "").toLowerCase();
+                    if (msg.includes("not confirmed") || msg.includes("confirm")) {
+                        showMessage(
+                            "Your email isn't confirmed yet. Check your inbox for the confirmation link, or resend it below.",
+                            "error"
+                        );
+                        resendBtn.style.display = "block";
+                    } else {
+                        showMessage(error.message, "error");
+                    }
+                    return;
+                }
+                showMessage("Login successful! Redirecting...", "success");
+                setTimeout(() => { window.location.href = "profile.html"; }, 500);
+            } catch (err) {
+                showMessage("Something went wrong. Please try again.", "error");
+            } finally {
+                btn.disabled = false;
+                btn.textContent = "Submit";
+            }
+        });
+
+        resendBtn.addEventListener("click", async () => {
+            const email = emailInput.value.trim();
+            if (!email) {
+                showMessage("Please enter your email above first.", "error");
+                return;
+            }
+            resendBtn.disabled = true;
+            resendBtn.textContent = "Sending...";
+            try {
+                const { error } = await supabase.auth.resend({
+                    type: "signup",
+                    email,
+                    options: {
+                        emailRedirectTo: window.location.origin + "/profile.html",
+                    },
+                });
+                if (error) {
+                    showMessage(error.message, "error");
+                } else {
+                    showMessage("Confirmation email sent. Please check your inbox.", "success");
+                    resendBtn.style.display = "none";
+                }
+            } catch (err) {
+                showMessage("Could not resend confirmation email.", "error");
+            } finally {
+                resendBtn.disabled = false;
+                resendBtn.textContent = "Resend Confirmation Email";
+            }
+        });
+    </script>
 </body>
 </html>
