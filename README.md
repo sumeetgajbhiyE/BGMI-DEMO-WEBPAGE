@@ -13,3 +13,5 @@ Scroll Reveals: Improve the existing IntersectionObserver reveal animations to m
 Layout Improvements
 Adjusted padding and margins to ensure the page feels spacious and well-organized.
 Made sure the cards and footer are perfectly responsive across all device sizes.
+
+Modifiying every layout for players engagement on site
